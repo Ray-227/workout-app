@@ -1,8 +1,9 @@
 import React from 'react';
-import styles from './Header.module.scss';
 
+import Hamburger from '../../ui/Hamburger';
+
+import styles from './Header.module.scss';
 import authIcon from './images/user.svg';
-import hamburgerIcon from './images/hamburger.svg';
 
 
 const Header = () => {
@@ -11,9 +12,7 @@ const Header = () => {
       <button>
         <img src={authIcon} alt="Auth"/>
       </button>
-      <button>
-        <img src={hamburgerIcon} alt="Menu"/>
-      </button>
+      <Hamburger />
     </header>
   );
 }
