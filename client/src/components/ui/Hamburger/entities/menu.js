@@ -5,7 +5,7 @@ const menu = [
   },
   {
     title: 'Create new',
-    link: '/create-new'
+    link: '/new-workout'
   },
   {
     title: 'Profile',

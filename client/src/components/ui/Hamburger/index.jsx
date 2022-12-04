@@ -19,7 +19,7 @@ const Hamburger = props => {
   return (
     <div className={styles.wrapper}>
       <button onClick={() => setShow(!show)}>
-        <img src={show ? hamburgerCloseIcon : hamburgerIcon} alt="Menu"/>
+        <img src={show ? hamburgerCloseIcon : hamburgerIcon} alt="Menu" height='24'/>
       </button>
       <nav className={`${styles.menu} ${show && styles.show}`}>
         <ul>

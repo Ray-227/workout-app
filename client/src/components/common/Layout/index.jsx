@@ -1,15 +1,23 @@
 import React from 'react';
+import cn from 'classnames';
+
 import Header from '../Header';
 
 import styles from './Layout.module.scss';
 
 
-const Layout = ({ children, height = '350px', bgImage }) => {
+const Layout = ({ children, bgImage, heading = '' }) => {
   return (
-    <div className={styles.wrapper} style={{height, backgroundImage: `url(${bgImage})`}}>
+    <div
+      className={cn(styles.wrapper, {
+        [styles.otherPage]: !!heading,
+      })}
+      style={{backgroundImage: `url(${bgImage})`}}
+    >
       <Header />
       <div>
-        {children}
+        {children && <div>{children}</div>}
+        {heading && <h1 className={styles.heading}>{heading}</h1>}
       </div>
     </div>
   );
