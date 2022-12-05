@@ -16,7 +16,7 @@ const Header = () => {
   return (
     <header className={styles.header}>
       {location.pathname === '/' ? (
-        <button>
+        <button onClick={() => navigate('/auth')}>
           <img src={authIcon} alt="Auth"/>
         </button>
       ) : (

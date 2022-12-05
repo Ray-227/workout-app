@@ -1,7 +1,5 @@
 @import '../../../scss/variables';
 
-$accent-04: rgba($accent, .4);
-
 .wrapper {
   text-align: center;
 }
@@ -14,16 +12,17 @@ $accent-04: rgba($accent, .4);
   border-radius: 10px;
   color: $white;
   padding: 16px 46px;
-  transition: background-color .15s ease;
-  background-color: $accent-04;
+  background-color: $purple;
+  transition: background-color .3s ease;
   &:hover{
-    background-color: rgba($accent, .8);
+    background-color: lighten($purple, 10%);
   }
 }
 
 .main {
   background-color: rgba(255, 255, 255, .2);
+  transition: background-color .3s ease;
   &:hover {
-    background-color: $accent-04;
+    background-color: $purple;
   }
 }

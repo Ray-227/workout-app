@@ -9,8 +9,6 @@ import Select from '../../ui/Select';
 
 import createWorkoutImage from './bg-create-workout.png';
 
-import styles from './NewWorkout.module.scss';
-
 
 const options = [
   { value: 'rerserse', label: 'Push-ups' },
@@ -25,15 +23,11 @@ const NewWorkout = props => {
     console.log('handleSubmit');
   }
 
-  const handleChangeSelect = () => {
-    console.log('handleChangeSelect');
-  };
-
 
   return (
     <>
       <Layout bgImage={createWorkoutImage} heading={'Create new workout'} />
-      <div className={styles.wrapper}>
+      <div className='wrapper-inner-page'>
         <form onSubmit={handleSubmit} id="newWorkoutForm">
           <Field
             placeholder="Enter name"
@@ -48,11 +42,11 @@ const NewWorkout = props => {
             onChange={setSelectValue}
             isMulti
           />
+          <Button
+            text='Create'
+            callback={() => {}}
+          />
         </form>
-        <Button
-          text='Create'
-          callback={() => {}}
-        />
       </div>
     </>
   );

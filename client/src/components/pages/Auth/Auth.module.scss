@@ -1,0 +1,20 @@
+.wrapper-button-auth {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  > div {
+    width: 48%;
+    > button {
+      width: 100%;
+    }
+
+    &:last-child > button {
+      background-color: #366565;
+      transition: background-color .3s ease;
+      &:hover {
+        background-color: lighten(#366565, 10%);
+      }
+    }
+  }
+}
