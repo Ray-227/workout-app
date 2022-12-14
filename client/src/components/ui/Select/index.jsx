@@ -1,7 +1,5 @@
-import React, { useState } from 'react';
+import React  from 'react';
 import { default as ReactSelect } from 'react-select';
-
-import styles from './Select.module.scss';
 
 
 const Select = ({ placeholder, options, value, onChange, isMulti }) => {
