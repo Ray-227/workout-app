@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useMutation } from 'react-query';
 
 import { $api } from '../../../api/api';
@@ -15,6 +16,7 @@ import Loader from '../../ui/Loader';
 
 
 const NewWorkout = props => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [type, setType] = useState('auth');
@@ -32,6 +34,12 @@ const NewWorkout = props => {
     {
       onSuccess(data) {
         localStorage.setItem('token', data.token);
+        // setIsAuth(true)
+
+        setEmail('');
+        setPassword('');
+
+        navigate('/');
       }
     }
   );
