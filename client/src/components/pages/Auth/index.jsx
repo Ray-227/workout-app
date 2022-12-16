@@ -4,6 +4,8 @@ import { useMutation } from 'react-query';
 
 import { $api } from '../../../api/api';
 
+import useAuth from '../../../hooks/useAuth';
+
 import Layout from '../../common/Layout';
 
 import Button from '../../ui/Button';
@@ -20,12 +22,13 @@ const NewWorkout = props => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [type, setType] = useState('auth');
+  const { setIsAuth } = useAuth();
 
   const { mutate: register, isLoading, error } = useMutation(
     'Registration',
     () => {
       $api({
-        url: '/users/profile',
+        url: '/users/',
         type: 'POST',
         auth: false,
         body: { email, password },
@@ -33,35 +36,56 @@ const NewWorkout = props => {
     },
     {
       onSuccess(data) {
-        localStorage.setItem('token', data.token);
-        // setIsAuth(true)
-
-        setEmail('');
-        setPassword('');
-
-        navigate('/');
+        handleSuccess(data.token);
       }
     }
   );
+
+  const { mutate: auth, isLoadingAuth, errorAuth } = useMutation(
+    'Authorization',
+    () => {
+      $api({
+        url: '/users/login',
+        type: 'POST',
+        auth: false,
+        body: { email, password },
+      });
+    },
+    {
+      onSuccess(data) {
+        handleSuccess(data.token);
+      }
+    }
+  );
+
+  const handleSuccess = token => {
+    localStorage.setItem('token', token);
+    setIsAuth(true)
+
+    setEmail('');
+    setPassword('');
+
+    navigate('/');
+  }
 
   const handleSubmit = e => {
     e.preventDefault();
 
     if (type === 'auth') {
-      console.log('AUTH');
+      auth();
     } else {
       register();
     }
   }
 
-  console.log(isLoading);
 
   return (
     <>
       <Layout bgImage={bgAuth} heading={'Auth'} />
       <div className='wrapper-inner-page'>
         {error && <Alert type={'error'} text={error} />}
-        {isLoading
+        {errorAuth && <Alert type={'error'} text={error} />}
+        {(isLoading || isLoadingAuth)
           ? <Loader />
           : (
             <form id="Auth" onSubmit={handleSubmit}>

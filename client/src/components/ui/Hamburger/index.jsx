@@ -1,5 +1,7 @@
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
+
+import useOutsideAlerter from '../../../hooks/useOutsideAlerter';
+import useAuth from '../../../hooks/useAuth';
 
 import menu from './entities/menu'
 
@@ -9,19 +11,22 @@ import hamburgerCloseIcon from './images/hamburger-close.svg';
 
 
 const Hamburger = props => {
-  const [show, setShow] = useState(false);
+  const { setIsAuth } = useAuth();
+  const { ref, isComponentVisible, setIsComponentVisible  } = useOutsideAlerter(false);
 
   const handleLogout = () => {
-    console.log('handleLogout');
+    localStorage.removeItem('token');
+    setIsAuth(false);
+    setIsComponentVisible(false);
   }
 
 
   return (
-    <div className={styles.wrapper}>
-      <button onClick={() => setShow(!show)}>
-        <img src={show ? hamburgerCloseIcon : hamburgerIcon} alt="Menu" height='24'/>
+    <div className={styles.wrapper} ref={ref}>
+      <button onClick={() => setIsComponentVisible(!isComponentVisible)}>
+        <img src={isComponentVisible ? hamburgerCloseIcon : hamburgerIcon} alt="Menu" height='24'/>
       </button>
-      <nav className={`${styles.menu} ${show && styles.show}`}>
+      <nav className={`${styles.menu} ${isComponentVisible && styles.show}`}>
         <ul>
           {menu.map(item => (
             <li key={item.link}>
