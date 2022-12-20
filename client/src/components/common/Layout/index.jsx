@@ -6,12 +6,11 @@ import Header from '../Header';
 import styles from './Layout.module.scss';
 
 
-const Layout = ({ children, bgImage, heading = '' }) => {
+const Layout = ({ children, bgImage, heading = '', otherPage = false }) => {
   return (
     <div
       className={cn(styles.wrapper, {
-        [styles.otherPage]: !!heading,
-        [styles.imageShadow]: !!bgImage,
+        [styles.otherPage]: !!heading || otherPage,
       })}
       style={{backgroundImage: `url(${bgImage})`}}
     >

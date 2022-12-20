@@ -1,17 +1,17 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useMutation, useQuery } from 'react-query';
+import { $api } from '../../../api/api';
 
 import Layout from '../../common/Layout';
 
 import Button from '../../ui/Button';
 import Field from '../../ui/Field';
 import Select from '../../ui/Select';
-
-import createWorkoutImage from './bg-create-workout.png';
-import { useMutation, useQuery } from 'react-query';
-import { $api } from '../../../api/api';
 import Alert from '../../ui/Alert';
 import Loader from '../../ui/Loader';
+
+import createWorkoutImage from './bg-create-workout.png';
 
 
 const NewWorkout = props => {

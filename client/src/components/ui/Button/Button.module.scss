@@ -20,9 +20,9 @@
 }
 
 .main {
-  background-color: rgba(255, 255, 255, .2);
+  background-color: rgba($black, .6);
   transition: background-color .3s ease;
   &:hover {
-    background-color: $purple;
+    background-color: $dark-purple;
   }
 }

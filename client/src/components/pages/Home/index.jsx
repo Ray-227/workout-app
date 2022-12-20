@@ -27,7 +27,7 @@ const Home = () => {
       refetchOnWindowFocus: false,
       enabled: isAuth,
     },
-    );
+  );
 
   return (
     <Layout bgImage={bgImage}>
