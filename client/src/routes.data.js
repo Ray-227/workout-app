@@ -3,6 +3,7 @@ import Auth from './components/pages/Auth';
 import NewWorkout from './components/pages/NewWorkout';
 import NewExercise from './components/pages/NewExercise';
 import Profile from './components/pages/Profile';
+import SingleWorkout from './components/pages/SingleWorkout';
 
 
 const routes = [
@@ -34,6 +35,12 @@ const routes = [
     path: '/profile',
     exact: false,
     element: Profile,
+    auth: false,
+  },
+  {
+    path: '/workouts',
+    exact: false,
+    element: SingleWorkout,
     auth: false,
   },
 ];
