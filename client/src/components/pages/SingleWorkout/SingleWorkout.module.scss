@@ -1,9 +1,12 @@
 @import '../../../scss/variables';
 
 .heading {
-  width: 280px;
   background-color: rgba(#1a0612ab, 0.59);
   box-shadow: 0 0 30px 20px #1a0612ab;
+
+  > h1 {
+    width: 280px;
+  }
 }
 
 .wrapper {

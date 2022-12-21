@@ -4,6 +4,7 @@ import NewWorkout from './components/pages/NewWorkout';
 import NewExercise from './components/pages/NewExercise';
 import Profile from './components/pages/Profile';
 import SingleWorkout from './components/pages/SingleWorkout';
+import Exercises from './components/pages/Exercises';
 
 
 const routes = [
@@ -41,6 +42,12 @@ const routes = [
     path: '/workouts',
     exact: false,
     element: SingleWorkout,
+    auth: false,
+  },
+  {
+    path: '/exercises',
+    exact: false,
+    element: Exercises,
     auth: false,
   },
 ];

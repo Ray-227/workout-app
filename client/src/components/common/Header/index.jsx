@@ -20,11 +20,11 @@ const Header = () => {
     <header className={styles.header}>
       {location.pathname === '/' ? (
         <button onClick={() => navigate('/auth')}>
-          <img src={isAuth ? bodyIcon : authIcon} alt={isAuth ? 'body' : 'icon'} />
+          <img src={isAuth ? bodyIcon : authIcon} alt={isAuth ? 'body' : 'icon'} draggable="false" />
         </button>
       ) : (
         <button onClick={() => navigate(-1)}>
-          <img src={backIcon} alt="back" />
+          <img src={backIcon} alt="back" draggable="false" />
         </button>
       )}
       <Hamburger />

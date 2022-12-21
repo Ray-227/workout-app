@@ -1,9 +1,13 @@
+import { useNavigate } from 'react-router-dom';
 import Layout from '../../common/Layout';
 import bg from '../../../images/bg-1.jpg';
 import bicepsIcon from './biceps.svg';
 import styles from './SingleWorkout.module.scss';
 
 const Profile = () => {
+  const navigate = useNavigate();
+
+
   return (
     <>
       <Layout bgImage={bg} otherPage>
@@ -13,13 +17,13 @@ const Profile = () => {
         </div>
       </Layout>
       <div className={styles.wrapper}>
-        <div className={styles.workout}>
+        <div className={styles.workout} onClick={() => navigate('/exercises')}>
           <span>Biceps curl</span>
-          <img src={bicepsIcon} alt='Biceps curl'/>
+          <img src={bicepsIcon} alt='Biceps curl' draggable="false" />
         </div>
         <div className={styles.workout}>
           <span>Biceps curl</span>
-          <img src={bicepsIcon} alt='Biceps curl'/>
+          <img src={bicepsIcon} alt='Biceps curl' draggable="false" />
         </div>
 
         <div className={styles.divider}></div>
