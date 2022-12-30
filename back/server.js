@@ -3,10 +3,13 @@ import morgan from 'morgan'
 import dotenv from 'dotenv'
 import colors from 'colors'
 
-import userRoutes from './routes/userRoutes.js';
+import connectDB from './src/config/db.js';
+import userRoutes from './src/routes/userRoutes.js';
 
 
 dotenv.config()
+
+connectDB()
 
 const app = express()
 

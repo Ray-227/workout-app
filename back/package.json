@@ -2,7 +2,7 @@
   "name": "back",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "type": "module",
   "scripts": {
     "start": "node back/server",
@@ -13,6 +13,7 @@
   "author": "Ray <ray-227@ya.ru>",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "dotenv": "~16.0.3",
     "express": "~4.18.2",
     "mongoose": "^6.8.1"
