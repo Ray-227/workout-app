@@ -2,33 +2,36 @@ import mongoose from 'mongoose'
 import bcryptjs from 'bcryptjs'
 
 
-const userSchema = mongoose.Schema({
-  name: String,
-  password: {
-    type: String,
-    required: true,
+const userSchema = mongoose.Schema(
+  {
+    name: String,
+    password: {
+      type: String,
+      required: true,
+    },
+    email: {
+      type: String,
+      required: true,
+    },
+    images: {
+      before: String,
+      after: String,
+    },
   },
-  email: {
-    type: String,
-    required: true,
-  },
-  images: {
-    before: String,
-    after: String,
-  },
-}, {
-  minimize: false,
-  timestamp: true,
-})
-
-userSchema.methods.matchPassword = async enterPassword => await bcryptjs.compare(enterPassword, this.password)
-
-userSchema.pre('save', async next => {
-  if (!this.isModified('password')) {
-    next()
+  {
+    minimize: false,
+    timestamps: true,
   }
+)
 
-  const salt = await bcryptjs.getSalt('10')
+userSchema.methods.matchPassword = async function (enteredPassword) {
+  return await bcryptjs.compare(enteredPassword, this.password)
+}
+
+userSchema.pre('save', async function (next) {
+  if (!this.isModified('password')) next()
+
+  const salt = await bcryptjs.genSalt(10)
   this.password = await bcryptjs.hash(this.password, salt)
 })
 
