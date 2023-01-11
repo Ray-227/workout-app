@@ -1,5 +1,6 @@
 import User from '../../models/userModel.js';
 import asyncHandler from 'express-async-handler';
+import generateToken from '../../helpres/generateToken.js';
 
 
 // @desc POST Register user
@@ -16,6 +17,7 @@ export const registerUser = asyncHandler(async (req, res) => {
   }
 
   const user = await User.create({ email, password })
+  const token = generateToken(user._id)
 
-  res.json(user)
+  res.json({ user, token })
 })

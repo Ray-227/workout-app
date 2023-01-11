@@ -3,7 +3,11 @@ import morgan from 'morgan'
 import dotenv from 'dotenv'
 import colors from 'colors'
 
+/* Config */
 import connectDB from './src/config/db.js';
+/* Middleware */
+import { errorHandler, notFound } from './src/middleware/errorMiddleware.js'
+/* Routes */
 import userRoutes from './src/routes/userRoutes.js';
 
 
@@ -12,14 +16,13 @@ dotenv.config()
 connectDB()
 
 const app = express()
-
-if (process.env.NODE_ENV === 'DEV') {
-  app.use(morgan('dev'))
-}
-
+if (process.env.NODE_ENV === 'DEV') app.use(morgan('dev'))
 app.use(express.json())
 
 app.use('/api/users', userRoutes)
+
+app.use(notFound)
+app.use(errorHandler)
 
 const PORT = process.env.PORT || 5000
 app.listen(
