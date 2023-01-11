@@ -9,6 +9,7 @@ import connectDB from './src/config/db.js';
 import { errorHandler, notFound } from './src/middleware/errorMiddleware.js'
 /* Routes */
 import userRoutes from './src/routes/userRoutes.js';
+import exercisesRoutes from './src/routes/exercisesRoutes.js';
 
 
 dotenv.config()
@@ -20,6 +21,7 @@ if (process.env.NODE_ENV === 'DEV') app.use(morgan('dev'))
 app.use(express.json())
 
 app.use('/api/users', userRoutes)
+app.use('/api/exercises', exercisesRoutes)
 
 app.use(notFound)
 app.use(errorHandler)
