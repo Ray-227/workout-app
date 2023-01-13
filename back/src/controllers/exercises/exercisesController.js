@@ -13,4 +13,5 @@ const addNewExercises = asyncHandler(async (req, res) => {
   res.json(exercise)
 })
 
-export default addNewExercises
+
+export { addNewExercises }

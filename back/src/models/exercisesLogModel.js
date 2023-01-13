@@ -14,11 +14,6 @@ const exercisesLogSchema = mongoose.Schema({
     ref: 'Exercises',
     required: true
   },
-  workout: {
-    type: ObjectId,
-    ref: 'Workout',
-    required: true
-  },
   times: [{
     weight: { type: Number, required: true },
     repeat: { type: Number, required: true },
