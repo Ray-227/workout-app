@@ -2,10 +2,10 @@ import asyncHandler from 'express-async-handler'
 import Exercises from '../../models/exercisesModel.js';
 
 
-// @desc Add new exercises
+// @desc Create new exercises
 // @route POST /api/exercises
 // @access Private
-const addNewExercises = asyncHandler(async (req, res) => {
+const createNewExercises = asyncHandler(async (req, res) => {
   const { name, times, image } = req.body
 
   const exercise = await Exercises.create({ name, times, image })
@@ -14,4 +14,4 @@ const addNewExercises = asyncHandler(async (req, res) => {
 })
 
 
-export { addNewExercises }
+export { createNewExercises }

@@ -1,12 +1,13 @@
 import express from 'express'
 import protect from '../middleware/authMiddleware.js';
-import { addNewExercises, getExercises } from '../controllers/exercises/exercisesController.js';
-import { addNewExercisesLog } from '../controllers/exercises/exercisesLogController.js';
+import { createNewExercises } from '../controllers/exercises/exercisesController.js';
+import { createNewExercisesLog, getExercisesLog } from '../controllers/exercises/exercisesLogController.js';
 
 
 const router = express.Router()
 
-router.route('/').post(protect, addNewExercises)
-router.route('/log').post(protect, addNewExercisesLog)
+router.route('/').post(protect, createNewExercises)
+router.route('/log').post(protect, createNewExercisesLog)
+router.route('/log/:id').get(protect, getExercisesLog)
 
 export default router
