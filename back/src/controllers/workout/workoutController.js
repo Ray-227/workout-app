@@ -17,7 +17,7 @@ const createNewWorkout = asyncHandler(async(req, res) => {
 // @desc    Get workout
 // @route   GET /api/workouts/:id
 // @access  Private
-const getWorkout = asyncHandler(async(req, res) => {
+const getWorkoutByID = asyncHandler(async(req, res) => {
   const workout = await WorkoutCollection.findById(req.params.id).populate('exercises').lean()
   const minutes = Math.ceil(workout.exercises.length * 3.7)
 
@@ -46,6 +46,15 @@ const updateWorkout = asyncHandler(async(req, res) => {
   res.json(updatedWorkout)
 })
 
+// @desc    Get workout
+// @route   GET /api/workouts
+// @access  Private
+const getWorkouts = asyncHandler(async (req, res) => {
+  const workouts = await WorkoutCollection.find({}).populate('exercises')
+
+  res.json(workouts)
+})
+
 
 // @desc    Delete workout
 // @route   DELETE /api/workout/
@@ -66,5 +75,5 @@ const deleteWorkout = asyncHandler(async(req, res) => {
 })
 
 
-export { createNewWorkout, getWorkout, updateWorkout, deleteWorkout }
+export { createNewWorkout, getWorkoutByID, updateWorkout, deleteWorkout, getWorkouts }
 
