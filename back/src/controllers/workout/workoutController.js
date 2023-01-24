@@ -24,5 +24,26 @@ const getWorkout = asyncHandler(async(req, res) => {
 })
 
 
-export { createNewWorkout, getWorkout }
+// @desc    Create update workout
+// @route   PUT /api/workouts/
+// @access  Private
+const updateWorkout = asyncHandler(async(req, res) => {
+  const { name, exercisesID, workoutID } = req.body
+
+  const workout = await WorkoutCollection.findById(workoutID)
+
+  if (!workout) {
+    res.status(404)
+    throw new Error('Данная тренировка не найдена!')
+  }
+
+  workout.name = name
+  workout.exercises = exercisesID
+
+  const updatedWorkout = await workout.save()
+
+  res.json(updatedWorkout)
+})
+
+export { createNewWorkout, getWorkout, updateWorkout }
 
