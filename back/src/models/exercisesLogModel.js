@@ -14,6 +14,7 @@ const exercisesLogSchema = mongoose.Schema({
     ref: 'Exercises',
     required: true
   },
+  completed: { type: Boolean, default: false },
   times: [{
     weight: { type: Number, required: true },
     repeat: { type: Number, required: true },
