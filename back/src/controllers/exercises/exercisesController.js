@@ -57,4 +57,14 @@ const deleteExercises = asyncHandler(async(req, res) => {
 })
 
 
-export { createNewExercises, updateExercises, deleteExercises }
+// @desc    Get exercises
+// @route   GET /api/exercises/
+// @access  Private
+const getExercises = asyncHandler(async(req, res) => {
+  const exercises = await Exercises.find({})
+
+  res.json(exercises)
+})
+
+
+export { createNewExercises, updateExercises, deleteExercises, getExercises }
