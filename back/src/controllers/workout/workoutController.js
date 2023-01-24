@@ -1,5 +1,6 @@
 import asyncHandler from 'express-async-handler'
 import WorkoutCollection from '../../models/workoutModel.js'
+import Exercises from '../../models/exercisesModel.js';
 
 
 // @desc    Create new workout
@@ -24,7 +25,7 @@ const getWorkout = asyncHandler(async(req, res) => {
 })
 
 
-// @desc    Create update workout
+// @desc    Update workout
 // @route   PUT /api/workouts/
 // @access  Private
 const updateWorkout = asyncHandler(async(req, res) => {
@@ -45,5 +46,25 @@ const updateWorkout = asyncHandler(async(req, res) => {
   res.json(updatedWorkout)
 })
 
-export { createNewWorkout, getWorkout, updateWorkout }
+
+// @desc    Delete workout
+// @route   DELETE /api/workout/
+// @access  Private
+const deleteWorkout = asyncHandler(async(req, res) => {
+  const { workoutID } = req.body
+
+  const workout = await WorkoutCollection.findById(workoutID)
+
+  if (!workout) {
+    res.status(404)
+    throw new Error('Данная тренировка не найдена!')
+  }
+
+  await workout.remove()
+
+  res.json({message: "Тренировка уадлена"})
+})
+
+
+export { createNewWorkout, getWorkout, updateWorkout, deleteWorkout }
 

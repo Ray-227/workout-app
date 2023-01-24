@@ -15,7 +15,7 @@ const createNewExercises = asyncHandler(async (req, res) => {
 })
 
 
-// @desc    Create update Exercises
+// @desc    Update Exercises
 // @route   PUT /api/exercises/
 // @access  Private
 const updateExercises = asyncHandler(async(req, res) => {
@@ -37,4 +37,24 @@ const updateExercises = asyncHandler(async(req, res) => {
   res.json(updatedExercise)
 })
 
-export { createNewExercises, updateExercises }
+
+// @desc    Delete Exercises
+// @route   DELETE /api/exercises/
+// @access  Private
+const deleteExercises = asyncHandler(async(req, res) => {
+  const { exercisesID } = req.body
+
+  const exercise = await Exercises.findById(exercisesID)
+
+  if (!exercise) {
+    res.status(404)
+    throw new Error('Даннеое упражнение не найдено!')
+  }
+
+  await exercise.remove()
+
+  res.json({ message: "Упражнение уадлено", exercise })
+})
+
+
+export { createNewExercises, updateExercises, deleteExercises }
